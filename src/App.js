@@ -1,13 +1,7 @@
-// Your imports...
-// import UseEmail from "./UseEmail";
 import axios, * as others from "axios";
-// Example component
+import { Formik } from "formik";
+import * as yup from "yup";
 function App() {
-  // You don't need to manage state by yourself
-  // use the variables below
-  // const { loading, submitted, error, sendEmail } = UseEmail(
-  //   "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff"
-  // );
   let endpointUrl =
     "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff";
 
@@ -30,17 +24,32 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div style={{ margin: "1rem 0", fontSize: "2rem" }}>
-          {/* {submitted && "Done, email was sent!"}
-          {error ? `Unexpected error: ${error}` : null}
-          {loading && "Email is being sent now..."} */}
-        </div>
+    <div
+      className="App"
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#282c34",
+        color: "white",
+      }}
+    >
+      <h2>Contact Form</h2>
+      <form
+        action=""
+        style={{ display: "flex", flexDirection: "column", width: "40vw" }}
+      >
+        <input type="text" />
+
+        <input type="text" />
+        <textarea name="" id="" cols="30" rows="10"></textarea>
         <div style={{ margin: "1rem 0" }}>
           <button onClick={sendExample}>Send test data</button>
         </div>
-      </header>
+      </form>
     </div>
   );
 }

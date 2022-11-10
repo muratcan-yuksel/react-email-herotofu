@@ -1,10 +1,10 @@
-import { useState } from "react";
-const axios = require("axios");
-
-const UseEmail = (endpointUrl) => {
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+// Your imports...
+// import UseEmail from "./UseEmail";
+import axios, * as others from "axios";
+// Example component
+function App() {
+  let endpointUrl =
+    "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff";
 
   const sendEmail = async (data) => {
     try {
@@ -16,47 +16,28 @@ const UseEmail = (endpointUrl) => {
     }
   };
 
-  //   const sendEmail = (data) => {
-  //     setLoading(true);
-  //     setSubmitted(false);
-  //     setError(undefined);
-
-  //     fetch(endpointUrl, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     })
-  //       .then((response) => {
-  //         // Endpoint thinks that it's likely a spam/bot request, you need to change "spam protection mode" to "never" in HeroTofu forms
-  //         if (response.status === 422) {
-  //           throw new Error("Are you robot?");
-  //         }
-
-  //         if (response.status !== 200) {
-  //           throw new Error(`${response.statusText} (${response.status})`);
-  //         }
-
-  //         return response.json();
-  //       })
-  //       .then(() => {
-  //         setSubmitted(true);
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         setError(err.toString());
-  //         setLoading(false);
-  //       });
-  //   };
-
-  return {
-    submitted,
-    loading,
-    error,
-    sendEmail,
+  const sendExample = () => {
+    // Can be any data, static and dynamic
+    sendEmail({
+      example_user: "user@example.com",
+      example_data: new Date().toISOString(),
+    });
   };
-};
 
-export default UseEmail;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div style={{ margin: "1rem 0", fontSize: "2rem" }}>
+          {/* {submitted && "Done, email was sent!"}
+          {error ? `Unexpected error: ${error}` : null}
+          {loading && "Email is being sent now..."} */}
+        </div>
+        <div style={{ margin: "1rem 0" }}>
+          <button onClick={sendExample}>Send test data</button>
+        </div>
+      </header>
+    </div>
+  );
+}
+
+export default App;
