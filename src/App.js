@@ -1,21 +1,9 @@
 import axios, * as others from "axios";
 import { useState } from "react";
 function App() {
-  const [values, setValues] = useState({
-    fullName: "",
-    email: "",
-    message: "",
-  });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(name);
-    console.log(email);
-    console.log(message);
-  };
 
   let endpointUrl =
     "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff";
@@ -29,6 +17,7 @@ function App() {
       console.error(err);
     }
   };
+
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -39,11 +28,13 @@ function App() {
     setMessage(e.target.value);
   };
 
-  const sendExample = () => {
+  const sendExample = (e) => {
+    e.preventDefault();
     // Can be any data, static and dynamic
     sendEmail({
-      example_user: "user@example.com",
-      example_data: new Date().toISOString(),
+      example_name: name,
+      example_email: email,
+      example_message: message,
     });
   };
 
@@ -83,7 +74,7 @@ function App() {
           rows="10"
         ></textarea>
         <div style={{ margin: "1rem 0" }}>
-          <button onClick={handleFormSubmit}>Send email</button>
+          <button onClick={sendExample}>Send email</button>
         </div>
       </form>
     </div>
