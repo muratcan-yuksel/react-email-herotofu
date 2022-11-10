@@ -1,7 +1,22 @@
 import axios, * as others from "axios";
-import { Formik } from "formik";
-import * as yup from "yup";
+import { useState } from "react";
 function App() {
+  const [values, setValues] = useState({
+    fullName: "",
+    email: "",
+    message: "",
+  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(name);
+    console.log(email);
+    console.log(message);
+  };
+
   let endpointUrl =
     "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff";
 
@@ -13,6 +28,15 @@ function App() {
       // Handle Error Here
       console.error(err);
     }
+  };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  const handleMail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleMessage = (e) => {
+    setMessage(e.target.value);
   };
 
   const sendExample = () => {
@@ -38,16 +62,28 @@ function App() {
       }}
     >
       <h2>Contact Form</h2>
-      <form
-        action=""
-        style={{ display: "flex", flexDirection: "column", width: "40vw" }}
-      >
-        <input type="text" />
 
-        <input type="text" />
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+      <form style={{ display: "flex", flexDirection: "column", width: "40vw" }}>
+        <input
+          onChange={handleName}
+          style={{ marginBottom: "10px" }}
+          type="text"
+        />
+
+        <input
+          onChange={handleMail}
+          style={{ marginBottom: "10px" }}
+          type="text"
+        />
+        <textarea
+          onChange={handleMessage}
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
         <div style={{ margin: "1rem 0" }}>
-          <button onClick={sendExample}>Send test data</button>
+          <button onClick={handleFormSubmit}>Send email</button>
         </div>
       </form>
     </div>
