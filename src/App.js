@@ -1,22 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-
+// Your imports...
+// import UseEmail from "./UseEmail";
+import axios, * as others from "axios";
+// Example component
 function App() {
+  // You don't need to manage state by yourself
+  // use the variables below
+  // const { loading, submitted, error, sendEmail } = UseEmail(
+  //   "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff"
+  // );
+  let endpointUrl =
+    "https://public.herotofu.com/v1/ffa45330-5ffc-11ed-b82c-5d75eaa7ccff";
+
+  const sendEmail = async (data) => {
+    try {
+      const resp = await axios.post(endpointUrl, data);
+      console.log(resp.data);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  };
+
+  const sendExample = () => {
+    // Can be any data, static and dynamic
+    sendEmail({
+      example_user: "user@example.com",
+      example_data: new Date().toISOString(),
+    });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div style={{ margin: "1rem 0", fontSize: "2rem" }}>
+          {/* {submitted && "Done, email was sent!"}
+          {error ? `Unexpected error: ${error}` : null}
+          {loading && "Email is being sent now..."} */}
+        </div>
+        <div style={{ margin: "1rem 0" }}>
+          <button onClick={sendExample}>Send test data</button>
+        </div>
       </header>
     </div>
   );
